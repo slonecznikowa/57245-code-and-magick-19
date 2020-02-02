@@ -40,7 +40,8 @@ window.renderStatistics = function (ctx, names, times) {
   var RED_COLOR = 'rgba(255, 0, 0, 1)';
   var getRandom = function () {
     return Math.round(100 * Math.random());
-  }
+  };
+
   var generateBlue = function () {
     return 'hsl(235, ' + getRandom() + '%, 27%)';
   };
