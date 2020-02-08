@@ -4,6 +4,7 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COATS_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
+var WIZARD_NUMBRER = 4;
 
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
@@ -17,7 +18,7 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
 // Функция генерации случайных данных
 function generateWizards() {
   var wizards = [];
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < WIZARD_NUMBRER; i++) {
     var wizardName = getRandomName() + ' ' + getRandomSurname();
     var wizardCoatColor = getRandomCoatColor();
     var wizardEyeColor = getRandomEyeColor();
@@ -31,24 +32,31 @@ function generateWizards() {
   return wizards;
 }
 
+// Функция получения рандомного числа
+function getRandomNumber(maxNumber) {
+  return Math.floor(Math.random() * maxNumber);
+}
+
+// Функция получения рандомного элемента в массиве
+function getRandomArrayItem(array) {
+  var randomIndex = getRandomNumber(array.length);
+  return array[randomIndex];
+}
+
 function getRandomName() {
-  var randomName = Math.floor(Math.random() * WIZARD_NAMES.length);
-  return WIZARD_NAMES[randomName];
+  return getRandomArrayItem(WIZARD_NAMES);
 }
 
 function getRandomSurname() {
-  var randomName = Math.floor(Math.random() * WIZARD_SURNAMES.length);
-  return WIZARD_SURNAMES[randomName];
+  return getRandomArrayItem(WIZARD_SURNAMES);
 }
 
 function getRandomCoatColor() {
-  var randomCoatColor = Math.floor(Math.random() * WIZARD_COATS_COLOR.length);
-  return WIZARD_COATS_COLOR[randomCoatColor];
+  return getRandomArrayItem(WIZARD_COATS_COLOR);
 }
 
 function getRandomEyeColor() {
-  var randomEyeColor = Math.floor(Math.random() * WIZARD_EYES_COLOR.length);
-  return WIZARD_EYES_COLOR[randomEyeColor];
+  return getRandomArrayItem(WIZARD_EYES_COLOR);
 }
 
 // Функция создания DOM-элемента на основе JS-объекта
@@ -66,7 +74,7 @@ var renderWizard = function (wizard) {
 var renderDom = function () {
   var wizards = generateWizards();
   var fragment = document.createDocumentFragment();
-  for (var i = 0; i < 4; i++) {
+  for (var i = 0; i < WIZARD_NUMBRER; i++) {
     fragment.appendChild(renderWizard(wizards[i]));
   }
   similarListElement.appendChild(fragment);
