@@ -4,7 +4,7 @@ var WIZARD_NAMES = ['Иван', 'Хуан Себастьян', 'Мария', 'К
 var WIZARD_SURNAMES = ['да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'];
 var WIZARD_COATS_COLOR = ['rgb(101, 137, 164)', 'rgb(241, 43, 107)', 'rgb(146, 100, 161)', 'rgb(56, 159, 117)', 'rgb(215, 210, 55)', 'rgb(0, 0, 0)'];
 var WIZARD_EYES_COLOR = ['black', 'red', 'blue', 'yellow', 'green'];
-var WIZARD_NUMBRER = 4;
+var WIZARD_NUMBER = 4;
 
 var userDialog = document.querySelector('.setup');
 userDialog.classList.remove('hidden');
@@ -18,10 +18,11 @@ var similarWizardTemplate = document.querySelector('#similar-wizard-template')
 // Функция генерации случайных данных
 function generateWizards() {
   var wizards = [];
-  for (var i = 0; i < WIZARD_NUMBRER; i++) {
-    var wizardName = getRandomName() + ' ' + getRandomSurname();
-    var wizardCoatColor = getRandomCoatColor();
-    var wizardEyeColor = getRandomEyeColor();
+  for (var i = 0; i < WIZARD_NUMBER; i++) {
+    var wizardName = getRandomArrayItem(WIZARD_NAMES) + ' ' + getRandomArrayItem(WIZARD_SURNAMES);
+    var wizardCoatColor = getRandomArrayItem(WIZARD_COATS_COLOR);;
+    var wizardEyeColor = getRandomArrayItem(WIZARD_EYES_COLOR);;
+
 
     wizards.push({
       name: wizardName,
@@ -43,22 +44,6 @@ function getRandomArrayItem(array) {
   return array[randomIndex];
 }
 
-function getRandomName() {
-  return getRandomArrayItem(WIZARD_NAMES);
-}
-
-function getRandomSurname() {
-  return getRandomArrayItem(WIZARD_SURNAMES);
-}
-
-function getRandomCoatColor() {
-  return getRandomArrayItem(WIZARD_COATS_COLOR);
-}
-
-function getRandomEyeColor() {
-  return getRandomArrayItem(WIZARD_EYES_COLOR);
-}
-
 // Функция создания DOM-элемента на основе JS-объекта
 var renderWizard = function (wizard) {
   var wizardElement = similarWizardTemplate.cloneNode(true);
@@ -74,7 +59,7 @@ var renderWizard = function (wizard) {
 var renderDom = function () {
   var wizards = generateWizards();
   var fragment = document.createDocumentFragment();
-  for (var i = 0; i < WIZARD_NUMBRER; i++) {
+  for (var i = 0; i < WIZARD_NUMBER; i++) {
     fragment.appendChild(renderWizard(wizards[i]));
   }
   similarListElement.appendChild(fragment);
