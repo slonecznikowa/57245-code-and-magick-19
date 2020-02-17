@@ -20,9 +20,8 @@ function generateWizards() {
   var wizards = [];
   for (var i = 0; i < WIZARD_NUMBER; i++) {
     var wizardName = getRandomArrayItem(WIZARD_NAMES) + ' ' + getRandomArrayItem(WIZARD_SURNAMES);
-    var wizardCoatColor = getRandomArrayItem(WIZARD_COATS_COLOR);;
-    var wizardEyeColor = getRandomArrayItem(WIZARD_EYES_COLOR);;
-
+    var wizardCoatColor = getRandomArrayItem(WIZARD_COATS_COLOR);
+    var wizardEyeColor = getRandomArrayItem(WIZARD_EYES_COLOR);
 
     wizards.push({
       name: wizardName,
@@ -55,7 +54,7 @@ var renderWizard = function (wizard) {
   return wizardElement;
 };
 
-// функция заполнения блока DOM-элементами на основе массива JS-объектов
+// Функция заполнения блока DOM-элементами на основе массива JS-объектов
 var renderDom = function () {
   var wizards = generateWizards();
   var fragment = document.createDocumentFragment();
